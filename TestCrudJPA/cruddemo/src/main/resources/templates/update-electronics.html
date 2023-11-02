@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Update Electronics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<div>
+    <h2>Update Electronics</h2>
+    <div class="row">
+        <div>
+            <form action="#" th:action="@{/updateelectronics/{id}(id=${electronics.getId()})}" th:object="${electronics}" method="Post">
+                <div class="row">
+                    <div>
+                        <label for="name" >Name</label>
+                        <input type="text" th:field="*{electronicsname}"  id="name" placeholder="Name">
+                        <span th:if="${#fields.hasErrors('electronicsname')}" th:errors="*{electronicsname}" ></span>
+                        <label for="name1" >Quantity</label>
+                        <input type="text" th:field="*{quantity}"  id="name1" placeholder="Name">
+                        <span th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}" ></span>
+                        <label for="name2" >Article</label>
+                        <input type="text" th:field="*{article}"  id="name2" placeholder="Name">
+                        <span th:if="${#fields.hasErrors('article')}" th:errors="*{article}" ></span>
+                        <div>
+                            <select name="warehouseid">
+                                <option th:each="el : ${warehouses}" th:value="${el.getId()}" th:text="${el.getWarehousename()}"></option>
+                            </select>
+                            <span th:if="${#fields.hasErrors('warehouse')}" th:errors="*{warehouse}" ></span>
+                        </div>
+                        <div>
+                            <select name="cotegoryid">
+                                <option th:each="el : ${cotegorys}" th:value="${el.getId()}" th:text="${el.getCotegoryname()}"></option>
+                            </select>
+                            <span th:if="${#fields.hasErrors('cotegory')}" th:errors="*{cotegory}" ></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-5">
+                        <input type="submit" class="btn btn-primary" value="Update Electronics">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

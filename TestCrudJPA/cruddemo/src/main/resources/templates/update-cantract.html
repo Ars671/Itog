@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Update Cantract</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<div>
+    <h2>Update Cantract</h2>
+    <div class="row">
+        <div>
+            <form action="#" th:action="@{/updatecantract/{id}(id=${cantracts.getId()})}" th:object="${cantracts}" method="Post">
+                <div class="row">
+                    <div>
+                        <label for="name" >Name</label>
+                        <input type="text" th:field="*{numbercantract}" id="name" placeholder="Name">
+                        <span th:if="${#fields.hasErrors('numbercantract')}" th:errors="*{numbercantract}" ></span>
+                        <label for="name1" >Quantity</label>
+                        <input type="date" th:field="*{dateformation}" id="name1" placeholder="Name">
+                        <span th:if="${#fields.hasErrors('dateformation')}" th:errors="*{dateformation}" ></span>
+                        <div>
+                            <select name="warehouseid">
+                                <option th:each="el : ${warehouses}" th:value="${el.getId()}" th:text="${el.getWarehousename()}"></option>
+                            </select>
+                            <span th:if="${#fields.hasErrors('warehouse')}" th:errors="*{warehouse}" ></span>
+                        </div>
+                        <div>
+                            <select name="supplierid">
+                                <option th:each="el : ${suppliers}" th:value="${el.getId()}" th:text="${el.getSuppliername()}"></option>
+                            </select>
+                            <span th:if="${#fields.hasErrors('supplier')}" th:errors="*{supplier}" ></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-5">
+                        <input type="submit" class="btn btn-primary" value="Update Cantract">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Add Employee</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<div>
+  <h2>New Employee</h2>
+  <div>
+    <div>
+      <form action="#" th:action="@{/addemployee}" th:object="${employee}" method="Post">
+        <div class="row">
+          <div>
+            <label for="name">Firstname</label>
+            <input type="text" th:field="*{firstname}" id="name" placeholder="Name">
+            <span th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}" ></span>
+            <label for="name1">Secondname</label>
+            <input type="text" th:field="*{secondname}" id="name1" placeholder="Name">
+            <span th:if="${#fields.hasErrors('secondname')}" th:errors="*{secondname}" ></span>
+            <label for="name2">Middlename</label>
+            <input type="text" th:field="*{middlename}" id="name2" placeholder="Name">
+            <span th:if="${#fields.hasErrors('middlename')}" th:errors="*{middlename}" ></span>
+            <label for="name3">Login</label>
+            <input type="text" th:field="*{login}" id="name3" placeholder="Name">
+            <span th:if="${#fields.hasErrors('login')}" th:errors="*{login}" ></span>
+            <label for="name4">Passwordemp</label>
+            <input type="text" th:field="*{passwordemp}" id="name4" placeholder="Name">
+            <span th:if="${#fields.hasErrors('passwordemp')}" th:errors="*{passwordemp}" ></span>
+            <div>
+              <select name="warehouseid">
+                <option th:each="el : ${warehouses}" th:value="${el.getId()}" th:text="${el.getWarehousename()}"></option>
+              </select>
+              <span th:if="${#fields.hasErrors('warehouse')}" th:errors="*{warehouse}" ></span>
+            </div>
+            <div>
+              <select name="postid">
+                <option th:each="el : ${posts}" th:value="${el.getId()}" th:text="${el.getPostname()}"></option>
+              </select>
+              <span th:if="${#fields.hasErrors('post')}" th:errors="*{post}" ></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div >
+            <input type="submit"  value="Add Employee">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

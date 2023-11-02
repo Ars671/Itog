@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Users</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link th:href="@{/css/list.css}" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    </head>
+    <body>
+    <div th:insert="blocks/header"></div>
+    <a href="/registration" class="btn btn-success">Новый пользователь</a>
+    <div class="container">
+        <table class="table">
+            <tr>
+                <th>Логин</th>
+                <th>Роли</th>
+            </tr>
+            <tr th:each="el : ${user_list}">
+                <td th:text="${el.username}"></td>
+                <td>
+                    <div th:each="role : ${el.roles}">
+                        <p th:text="${role}"></p>
+                    </div>
+                </td>
+                <td>
+                    <a class="btn btn-primary"
+                       th:href="'/admin/'+${el.ID_User}">Подробнее...</a>
+                </td>
+            </tr>
+        </table>
+        </div>
+        <div th:switch="${posts}" class="container my-5">
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div th:case="*">
+                        <h2 class="my-5">post</h2>
+                        <table  class="table table-striped" border="1">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="post : ${posts}">
+                                <td th:text="${post.getPostname()}"></td>
+                                <td><a th:href="@{/editpost/{id}(id=${post.id})}">EDIT</a></td>
+                                <td><a th:href="@{/deletepost/{id}(id=${post.id})}">DELETE</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="my-5"><a href="/newpost">Add Post</a></p>
+                    <form th:method="POST" th:action="@{/search}">
+                        <label for="searchstr">Enter series to search</label>
+                        <input type="text" id="searchstr" name="searchstr">
+                        <input type="submit" value="Search">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div th:switch="${cotegorys}" class="container my-5">
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div th:case="*">
+                        <h2 class="my-5">cotegory</h2>
+                        <table border="1">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="cotegory : ${cotegorys}">
+                                <td th:text="${cotegory.getCotegoryname()}"></td>
+                                <td><a th:href="@{/editcotegory/{id}(id=${cotegory.id})}">EDIT</a></td>
+                                <td><a th:href="@{/deletecotegory/{id}(id=${cotegory.id})}">DELETE</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="my-5"><a href="/newcotegory">Add Cotegory</a></p>
+                </div>
+            </div>
+        </div>
+        <div th:switch="${suppliers}" class="container my-5">
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div th:case="*">
+                        <h2 class="my-5">supplier</h2>
+                        <table border="1">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone number</th>
+                                <th>Inn</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="supplier : ${suppliers}">
+                                <td th:text="${supplier.getSuppliername()}"></td>
+                                <td th:text="${supplier.getPhonenumber()}"></td>
+                                <td th:text="${supplier.getInn()}"></td>
+                                <td><a th:href="@{/editsupplier/{id}(id=${supplier.id})}">EDIT</a></td>
+                                <td><a th:href="@{/deletesupplier/{id}(id=${supplier.id})}">DELETE</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="my-5"><a href="/newsupplier">Add Supplier</a></p>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div th:switch="${warehouses}" class="container my-5">
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div th:case="*">
+                        <h2 class="my-5">warehouse</h2>
+                        <table border="1">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="warehouse : ${warehouses}">
+                                <td th:text="${warehouse.getWarehousename()}"></td>
+                                <td th:text="${warehouse.getAddress()}"></td>
+                                <td><a th:href="@{/editwarehouse/{id}(id=${warehouse.id})}">EDIT</a></td>
+                                <td><a th:href="@{/deletewarehouse/{id}(id=${warehouse.id})}">DELETE</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="my-5"><a href="/newwarehouse">Add Warehouse</a></p>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        <div th:switch="${electronicss}" class="container my-5">
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div th:case="*">
+                        <h2 class="my-5">electronics</h2>
+                        <table border="1">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Quantity</th>
+                                <th>Article</th>
+                                <th>Warehouse name</th>
+                                <th>Cotegory name</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="electronics : ${electronicss}">
+                                <td th:text="${electronics.getElectronicsname()}"></td>
+                                <td th:text="${electronics.getQuantity()}"></td>
+                                <td th:text="${electronics.getArticle()}"></td>
+                                <td th:text="${electronics.getWarehouse().getWarehousename()}"></td>
+                                <td th:text="${electronics.getCotegory().getCotegoryname()}"></td>
+                                <td><a th:href="@{/editelectronics/{id}(id=${electronics.id})}">EDIT</a></td>
+                                <td><a th:href="@{/deleteelectronics/{id}(id=${electronics.id})}">DELETE</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="my-5"><a href="/newelectronics">Add Electronics</a></p>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div th:switch="${cantracts}" class="container my-5">
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div th:case="*">
+                        <h2 class="my-5">cantract</h2>
+                        <table border="1">
+                            <thead>
+                            <tr>
+                                <th>Number cantract</th>
+                                <th>Date formation</th>
+                                <th>Warehouse name</th>
+                                <th>Supplier name</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="cantract : ${cantracts}">
+                                <td th:text="${cantract.getNumbercantract()}"></td>
+                                <td th:text="${cantract.getDateformation()}"></td>
+                                <td th:text="${cantract.getWarehouse().getWarehousename()}"></td>
+                                <td th:text="${cantract.getSupplier().getSuppliername()}"></td>
+                                <td><a th:href="@{/editcantract/{id}(id=${cantract.id})}">EDIT</a></td>
+                                <td><a th:href="@{/deletecantract/{id}(id=${cantract.id})}">DELETE</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="my-5"><a href="/newcantract">Add Cantract</a></p>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div th:switch="${supplys}" class="container my-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <div th:case="*">
+                        <h2 class="my-5">supply</h2>
+                        <table border="1">
+                            <thead>
+                            <tr>
+                                <th>Number supply</th>
+                                <th>Date formation</th>
+                                <th>Number cantract</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="supply : ${supplys}">
+                                <td th:text="${supply.getNumbersupply()}"></td>
+                                <td th:text="${supply.getQuanti()}"></td>
+                                <td th:text="${supply.getCantract().getNumbercantract()}"></td>
+                                <td><a th:href="@{/editsupply/{id}(id=${supply.id})}">EDIT</a></td>
+                                <td><a th:href="@{/deletesupply/{id}(id=${supply.id})}">DELETE</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="my-5"><a href="/newsupply">Add Supply</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:switch="${employees}" class="container my-5">
+        <div class="row">
+            <div class="col-md-6">
+
+                <div th:case="*">
+                    <h2 class="my-5">employee</h2>
+                    <table border="1">
+                        <thead>
+                        <tr>
+                            <th>Firstname</th>
+                            <th>Secondname</th>
+                            <th>Middlename</th>
+                            <th>Login</th>
+                            <th>Password</th>
+                            <th>Warehouse name</th>
+                            <th>Post name</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="employee : ${employees}">
+                            <td th:text="${employee.getFirstname()}"></td>
+                            <td th:text="${employee.getSecondname()}"></td>
+                            <td th:text="${employee.getMiddlename()}"></td>
+                            <td th:text="${employee.getLogin()}"></td>
+                            <td th:text="${employee.getPasswordemp()}"></td>
+                            <td th:text="${employee.getWarehouse().getWarehousename()}"></td>
+                            <td th:text="${employee.getPost().getPostname()}"></td>
+                            <td><a th:href="@{/editemployee/{id}(id=${employee.id})}">EDIT</a></td>
+                            <td><a th:href="@{/deleteemployee/{id}(id=${employee.id})}">DELETE</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="my-5"><a href="/newemployee">Add Employee</a></p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    </body>
+</html>

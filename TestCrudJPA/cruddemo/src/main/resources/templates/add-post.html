@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Add Post</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<div>
+  <h2>New Post</h2>
+  <div>
+    <div>
+      <form action="#" th:action="@{/addpost}" th:object="${post}" method="post">
+        <div class="row">
+          <div >
+            <label for="name">Name</label>
+            <input type="text" th:field="*{postname}" id="name" placeholder="Name">
+            <span th:if="${#fields.hasErrors('postname')}" th:errors="*{postname}" ></span>
+          </div>
+        </div>
+        <div class="row">
+          <div >
+            <input type="submit"  value="Add Post">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

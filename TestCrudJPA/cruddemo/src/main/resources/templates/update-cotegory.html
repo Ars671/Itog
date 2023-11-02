@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Update Cotegory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<div>
+    <h2>Update Cotegory</h2>
+    <div class="row">
+        <div>
+            <form action="#" th:action="@{/updatecotegory/{id}(id=${cotegory.getId()})}" th:object="${cotegory}" method="Post">
+                <div class="row">
+                    <div>
+                        <label for="name" >Name</label>
+                        <input type="text" th:field="*{cotegoryname}"  id="name" placeholder="Name">
+                        <span th:if="${#fields.hasErrors('cotegoryname')}" th:errors="*{cotegoryname}" ></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-5">
+                        <input type="submit" class="btn btn-primary" value="Update Cotegory">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

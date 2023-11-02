@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Update Warehouse</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<div>
+    <h2>Update Warehouse</h2>
+    <div class="row">
+        <div>
+            <form action="#" th:action="@{/updatewarehouse/{id}(id=${warehouse.getId()})}" th:object="${warehouse}" method="Post">
+                <div class="row">
+                    <div>
+                        <label for="name" >Name</label>
+                        <input type="text" th:field="*{warehousename}"  id="name" placeholder="Name">
+                        <span th:if="${#fields.hasErrors('warehousename')}" th:errors="*{warehousename}" ></span>
+                        <label for="name1" >Address</label>
+                        <input type="text" th:field="*{address}"  id="name1" placeholder="Name">
+                        <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}" ></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-5">
+                        <input type="submit" class="btn btn-primary" value="Update Warehouse">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

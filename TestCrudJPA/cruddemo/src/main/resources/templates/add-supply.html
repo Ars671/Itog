@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Add Supply</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<div>
+  <h2>New Supply</h2>
+  <div>
+    <div>
+      <form action="#" th:action="@{/addsupply}" th:object="${supply}" method="Post">
+        <div class="row">
+          <div>
+            <label for="name">Number supply</label>
+            <input type="text" th:field="*{numbersupply}" id="name" placeholder="Name">
+            <span th:if="${#fields.hasErrors('numbersupply')}" th:errors="*{numbersupply}" ></span>
+          </div>
+          <div>
+            <label for="name1">Quanti</label>
+            <input type="text" th:field="*{quanti}" id="name1" placeholder="Name">
+            <span th:if="${#fields.hasErrors('quanti')}" th:errors="*{quanti}" ></span>
+          </div>
+            <div>
+              <select name="cantractid">
+                <option th:each="el : ${cantracts}" th:value="${el.getId()}" th:text="${el.getNumbercantract()}"></option>
+              </select>
+              <span th:if="${#fields.hasErrors('cantract')}" th:errors="*{cantract}" ></span>
+            </div>
+        </div>
+        <div class="row">
+          <div >
+            <input type="submit"  value="Add Supply">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Update Supplier</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<div>
+    <h2>Update Supplier</h2>
+    <div class="row">
+        <div>
+            <form action="#" th:action="@{/updatesupplier/{id}(id=${supplier.getId()})}" th:object="${supplier}" method="Post">
+                <div class="row">
+                    <div>
+                        <label for="name" >Name</label>
+                        <input type="text" th:field="*{suppliername}"  id="name" placeholder="Name">
+                        <span th:if="${#fields.hasErrors('suppliername')}" th:errors="*{suppliername}" ></span>
+                        <label for="name1" >Phone number</label>
+                        <input type="text" th:field="*{phonenumber}"  id="name1" placeholder="Name">
+                        <span th:if="${#fields.hasErrors('phonenumber')}" th:errors="*{phonenumber}" ></span>
+                        <label for="name2" >Inn</label>
+                        <input type="text" th:field="*{inn}"  id="name2" placeholder="Name">
+                        <span th:if="${#fields.hasErrors('inn')}" th:errors="*{inn}" ></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-5">
+                        <input type="submit" class="btn btn-primary" value="Update Supplier">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

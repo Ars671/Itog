@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Update Cantract</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<div>
+    <h2>Update Supply</h2>
+    <div class="row">
+        <div>
+            <form action="#" th:action="@{/updatesupply/{id}(id=${supplys.getId()})}" th:object="${supplys}" method="Post">
+                <div class="row">
+                    <div>
+                        <label for="name" >Number supply</label>
+                        <input type="text" th:field="*{numbersupply}" id="name" placeholder="Name">
+                        <span th:if="${#fields.hasErrors('numbersupply')}" th:errors="*{numbersupply}" ></span>
+                        <label for="name1" >Quanti</label>
+                        <input type="text" th:field="*{quanti}" id="name1" placeholder="Name">
+                        <span th:if="${#fields.hasErrors('quanti')}" th:errors="*{quanti}" ></span>
+                        <div>
+                            <select name="cantractid">
+                                <option th:each="el : ${cantracts}" th:value="${el.getId()}" th:text="${el.getNumbercantract()}"></option>
+                            </select>
+                            <span th:if="${#fields.hasErrors('cantract')}" th:errors="*{cantract}" ></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-5">
+                        <input type="submit" class="btn btn-primary" value="Update Supply">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
